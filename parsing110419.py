@@ -1,17 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Apr 12 00:18:15 2019
+Created on Thu Apr 11 19:00:14 2019
 
 @author: Dell
 """
+1
 
 import requests
 from bs4 import BeautifulSoup
+'''
+def get_html(url):
+    r = requests.get(url)
+    return r.text
 
+def get_data(html):
+    soup = BeautifulSoup(html,'lxml')
+    h1 = soup.find('div', id = 'home-welcome').find('body').find('h1').text
+    return h1
+
+def main():
+    url = 'http://example.com/'
+    print(get_data(get_html(url)))
+    
+if __name__ == '__main__':
+    main()
+'''
 
 def get_html(url):
  	r = requests.get(url)
-    
  	return r.text
 
 def get_data(html):
@@ -20,7 +36,7 @@ def get_data(html):
     return h1
 
 
-def getting_money():
+def main():
     url = "http://www.nbrb.by/API/ExRates/Rates/145"
     data1 =get_data(get_html(url))
     dct1 = {}
@@ -32,13 +48,11 @@ def getting_money():
     
     GreateDate = dct1["Date"]
     Today = GreateDate[8:10]+'.' + GreateDate[5:7] + '.' + GreateDate[:4]
-    #rez = 'За ' + Today +  ' курс ' + dct2["Cur_OfficialRate"] + ' рублей за 1 Евро, ' + dct1["Cur_OfficialRate"] + ' за 1 доллар'
-    #print(rez)
+    
     print('За ',Today, ' курс ',dct2["Cur_OfficialRate"],' рублей за 1 Евро, ',dct1["Cur_OfficialRate"],' за 1 доллар')
-    return(Today,dct2["Cur_OfficialRate"],dct1["Cur_OfficialRate"])
-getting_money()
+main()
+
 
 '''
 if __name__ == '__main__':
- 	main()
-'''
+ 	main()'''
